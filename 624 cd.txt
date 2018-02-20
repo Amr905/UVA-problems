@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+ll n, m;
+//double ans[2];
+//bool visted[400000];
+//int mp[1000000];
+//int arr[4000][4000];
+//pair<int,int>dp[4000];
+//vector < pair<ll, ll>> vec;
+bool withus[21];
+int arr[21];
+//set <string> res;
+int csum=0;
+vector<int> res;
+void backtrack(int ind = 0,int sum=0){
+	if (ind == m) {
+		if (sum > csum&&sum<=n)
+		{
+			csum = sum;
+			if (res.size() != 0)res.clear();
+			for (int i = 0; i < m; i++)
+			{
+				if (withus[i]) res.push_back(arr[i]);
+			}
+		}
+		
+		return; }
+	withus[ind] = 1;
+	backtrack(ind + 1, sum + arr[ind]);
+	withus[ind] = 0;
+	backtrack(ind + 1, sum);
+	//memset(withus, 0, sizeof(withus));
+	//backtrack(ind+1);
+}
+int main() {
+	ios_base::sync_with_stdio(false); cin.tie(0);
+	long long   a = 0, b = 0, c = 0, t, lj = 0, k = 0, r = 0, l = 0, sum = 0, d, rr, mn = INT_MAX, mx = INT_MIN, w, y, x;
+	string s, s1 = "", s2 = "", s3 = "";
+	while (cin >> n >> m) {
+		if (m == 0) return 0;
+		for (int i = 0; i < m; i++)
+		{
+			cin >> arr[i];
+		}
+		backtrack();
+		for (int i = 0; i < res.size(); i++)
+		{
+			cout << res[i] << " ";
+		}
+		cout << "sum:" << csum << "\n";
+		csum = 0;
+	}
+
+
+}
+
+
+
+
+
+
